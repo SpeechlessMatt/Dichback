@@ -1,4 +1,4 @@
-[简体中文](README_CN.md) | **繁體中文** | [English](README_EN.md)
+[简体中文](README.md) | **繁體中文** | [English](README_EN.md)
 
 
 # 二分回溯算法
