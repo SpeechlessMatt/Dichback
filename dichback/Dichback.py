@@ -15,7 +15,7 @@ class AlgorithmSet:
     @abc.abstractmethod
     def logic_unit(self, effective_list: list) -> bool:
         """
-        逻辑和-逻辑函数单元
+        逻辑与-逻辑函数单元
         :param effective_list: 逻辑单元函数接收列表作为值，需要遍历所有列表元素，当所有列表元素逻辑判断为True时，函数体才能够返回True,否则返回False
         :return: 布尔值
         """
@@ -23,8 +23,8 @@ class AlgorithmSet:
 
     def simple_exhaustion_algorithm(self, effective_list: list) -> list:
         """
-        简单穷举法，默认使用逻辑和-逻辑函数单元
-        :param effective_list: 在逻辑和-逻辑函数单元可处理数据集中的数据子集
+        简单穷举法，默认使用逻辑与-逻辑函数单元
+        :param effective_list: 在逻辑与-逻辑函数单元可处理数据集中的数据子集
         :return: 布尔值
         """
         yes_list = []
@@ -40,8 +40,8 @@ class AlgorithmSet:
 
     def dichotomy_backtracking_algorithm(self, effective_list: list) -> list:
         """
-        二分回溯算法，默认使用逻辑和-逻辑函数单元
-        :param effective_list: 在逻辑和-逻辑函数单元可处理数据集中的数据子集
+        二分回溯算法，默认使用逻辑与-逻辑函数单元
+        :param effective_list: 在逻辑与-逻辑函数单元可处理数据集中的数据子集
         :return: 布尔值
         """
         # 初始化
