@@ -1,6 +1,8 @@
 # 二分回溯算法
 一种节省步数的，效率高的回溯算法。
 
+> 但是本算法依靠**逻辑元**，如果运行逻辑元的步数算上的话，并不节省步数。所以，如果有特殊的逻辑和-逻辑元，在运算整体和的时候只需要一步，那本算法带来的优化效率是非常高的。
+
 ## 回溯逻辑
 
 回溯步骤比较复杂，直接看代码可能会好一点
@@ -47,7 +49,7 @@ class Al(AlgorithmSet):
 if __name__ == '__main__':
     a = Al()
     rep = a.dichotomy_backtracking_algorithm([i for i in range(1, 100)])
-    print(a.chance)
+    print(a.counts)
     print(rep)
 ```
 
