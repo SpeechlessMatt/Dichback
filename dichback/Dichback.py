@@ -3,19 +3,25 @@ import abc
 class AlgorithmChoiceError(Exception):
     pass
 
+class AlgorithmListIneffectiveError(Exception):
+    pass
+
+
 class AlgorithmSet:
     """
-    算法集合，目前只有作者自创的二分回溯算法和普通穷举法
+    算法集合，目前只有@Czy_4201b自创的二分回溯算法和普通穷举法、二分法，
+    里面所有使用的逻辑单元都是整体逻辑的单元，
+    也就是说，在该单元函数中，总是返回所有元素的逻辑与和或逻辑或和
     """
+
     def __init__(self):
         self.effective_list = []
         self.counts = 0
 
-
     @abc.abstractmethod
     def logic_unit(self, effective_list: list) -> bool:
         """
-        逻辑与-逻辑函数单元
+        逻辑与-逻辑或函数单元
         :param effective_list: 逻辑单元函数接收列表作为值，需要遍历所有列表元素，当所有列表元素逻辑判断为True时，函数体才能够返回True,否则返回False
         :return: 布尔值
         """
@@ -23,9 +29,9 @@ class AlgorithmSet:
 
     def simple_exhaustion_algorithm(self, effective_list: list) -> list:
         """
-        简单穷举法，默认使用逻辑与-逻辑函数单元
+        简单穷举法，默认使用逻辑与-逻辑或函数单元
         :param effective_list: 在逻辑与-逻辑函数单元可处理数据集中的数据子集
-        :return: 布尔值
+        :return: 列表
         """
         yes_list = []
         counts = 0
@@ -38,20 +44,51 @@ class AlgorithmSet:
         self.counts = counts
         return yes_list
 
+    def dichotomy_algorithm(self, effective_list: list) -> list:
+        """
+        二分法，默认使用逻辑与-逻辑或函数单元
+        :param effective_list: 在逻辑与-逻辑或函数单元可处理数据集中的数据子集
+        :return: 列表
+        """
+        # 初始化
+        counts = 0
+        list_len = len(effective_list)
+        min_num = 0
+        max_num = list_len//2
+        mark = list_len
+
+        while True:
+            effective_list_unit = [effective_list[i] for i in range(min_num, max_num)]
+            ret = self.logic_unit(effective_list_unit)
+            counts += 1
+
+            if ret:
+                mark = max_num
+                # 只剩一个了
+                if len(effective_list_unit) == 1:
+                    return effective_list[min_num]
+            else:
+                min_num = max_num
+                # 只剩一个了
+                if len(effective_list_unit) == 1:
+                    raise AlgorithmListIneffectiveError("所传入的‘有效数组‘并非有效")
+
+            max_num = (mark + min_num) // 2
+
     def dichotomy_backtracking_algorithm(self, effective_list: list) -> list:
         """
-        二分回溯算法，默认使用逻辑与-逻辑函数单元
-        :param effective_list: 在逻辑与-逻辑函数单元可处理数据集中的数据子集
-        :return: 布尔值
+        二分回溯算法，默认使用逻辑与-逻辑或函数单元
+        :param effective_list: 在逻辑与-逻辑或函数单元可处理数据集中的数据子集
+        :return: 列表
         """
         # 初始化
         list_len = len(effective_list)
         if list_len < 4:
             raise AlgorithmChoiceError("It is NOT SUITABLE for THIS METHOD.")
         min_num = 0
-        max_num = list_len - 1
+        max_num = list_len
         # 最小输出元：这个就是二分区间中左边区间长度的最小值，一旦长度小于lm，将通过一一遍历的方式将左区间输出
-        lm = list_len // 2 - 1
+        lm = list_len // 3 - 1
         # 记录步数
         counts = 0
         # 二分法边界 最右边区间的上界（端点）
@@ -66,7 +103,8 @@ class AlgorithmSet:
                 # 生成列表逻辑单元
                 # 逻辑单元 可以是任何有关列表的判断单元
                 # 这个相当于将range(min_num, max_num)扩展到逻辑单元层次
-                effective_list_unit = [effective_list[i] for i in range(min_num, max_num + 1)]
+                # 这个max_num+1别改，目前能跑
+                effective_list_unit = [effective_list[i] for i in range(min_num, max_num)]
                 ret = self.logic_unit(effective_list_unit)
                 counts += 1
                 if not ret:
@@ -97,7 +135,7 @@ class AlgorithmSet:
 
                 else:
 
-                    for i in range(min_num, max_num + 1):
+                    for i in range(min_num, max_num):
                         yes_list.append(i)
                     # 满区间判断true直接break
                     if mark == max_num:
