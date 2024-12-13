@@ -9,7 +9,7 @@ class AlgorithmSet:
     """
     def __init__(self):
         self.effective_list = []
-        self.chance = 0
+        self.counts = 0
 
 
     @abc.abstractmethod
@@ -28,14 +28,14 @@ class AlgorithmSet:
         :return: 布尔值
         """
         yes_list = []
-        chance = 0
+        counts = 0
         # 遍历元素
         for i in effective_list:
             # 遍历逻辑单元
             if self.logic_unit([i]):
                 yes_list.append(i)
-            chance += 1
-        self.chance = chance
+            counts += 1
+        self.counts = counts
         return yes_list
 
     def dichotomy_backtracking_algorithm(self, effective_list: list) -> list:
@@ -53,7 +53,7 @@ class AlgorithmSet:
         # 最小输出元：这个就是二分区间中左边区间长度的最小值，一旦长度小于lm，将通过一一遍历的方式将左区间输出
         lm = list_len // 2 - 1
         # 记录步数
-        chance = 0
+        counts = 0
         # 二分法边界 最右边区间的上界（端点）
         mark = max_num
         # 上界记录列表
@@ -68,7 +68,7 @@ class AlgorithmSet:
                 # 这个相当于将range(min_num, max_num)扩展到逻辑单元层次
                 effective_list_unit = [effective_list[i] for i in range(min_num, max_num + 1)]
                 ret = self.logic_unit(effective_list_unit)
-                chance += 1
+                counts += 1
                 if not ret:
                     # lm是区间长度
                     if max_num - min_num <= lm:
@@ -76,7 +76,7 @@ class AlgorithmSet:
                         for i in range(min_num, max_num):
                             # 遍历逻辑单元
                             if self.logic_unit([effective_list[i]]):
-                                chance += 1
+                                counts += 1
                                 yes_list.append(i)
 
                         min_num = max_num
@@ -118,5 +118,5 @@ class AlgorithmSet:
         except IndexError:
             pass
 
-        self.chance = chance
+        self.counts = counts
         return [effective_list[i] for i in yes_list]
