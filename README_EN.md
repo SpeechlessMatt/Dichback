@@ -4,7 +4,7 @@
 # Dichback Algorithm
 A step-saving and efficient backtracking algorithm.
 
-> But this algorithm relies on **logical unit** and does not save steps if the number of steps to run the logical elements counts. Therefore, if there are special logical conjunction units, only simple steps are needed to calculate the The sum of logical conjunction operations, and the optimization efficiency brought by this algorithm is very high.
+> But this algorithm relies on **logical unit** and does not save steps if the number of steps to run the logical elements counts. Therefore, if there are special logical conjunction units, only simple steps are needed to calculate the sum of logical conjunction operations, and the optimization efficiency brought by this algorithm is very high.
 
 ## Backtracking logic
 
