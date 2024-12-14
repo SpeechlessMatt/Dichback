@@ -73,6 +73,8 @@ class AlgorithmSet:
                 max_num = (mark + min_num) // 2
                 # 只剩一个了
                 if min_num == max_num:
+                    if self.logic_unit(effective_list[min_num]):
+                        return effective_list[min_num]
                     raise AlgorithmListIneffectiveError("所传入的‘有效数组‘并非有效")
 
     def dichotomy_backtracking_algorithm(self, effective_list: list) -> list:
