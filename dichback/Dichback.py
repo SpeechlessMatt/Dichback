@@ -9,9 +9,9 @@ class AlgorithmListIneffectiveError(Exception):
 
 class AlgorithmSet:
     """
-    算法集合，目前只有@Czy_4201b自创的二分回溯算法和普通穷举法、二分法，
+    算法集合，目前只有@Czy_4201b的二分回溯算法和普通穷举法、二分法，
     里面所有使用的逻辑单元都是整体逻辑的单元，
-    也就是说，在该单元函数中，总是返回所有元素的逻辑与和或逻辑或和
+    也就是说，在该单元函数中，总是返回所有元素的逻辑与和或逻辑或的和
     """
 
     def __init__(self):
@@ -48,7 +48,7 @@ class AlgorithmSet:
         """
         二分法，默认使用逻辑与-逻辑或函数单元，仅适用于寻找一个目标元素
         :param effective_list: 在逻辑与-逻辑或函数单元可处理数据集中的数据子集
-        :return: 列表
+        :return: everything
         """
         # 初始化
         counts = 0
