@@ -44,7 +44,7 @@ class AlgorithmSet:
         self.counts = counts
         return yes_list
 
-    def dichotomy_algorithm(self, effective_list: list) -> list:
+    def dichotomy_algorithm(self, effective_list: list):
         """
         二分法，默认使用逻辑与-逻辑或函数单元，仅适用于寻找一个目标元素
         :param effective_list: 在逻辑与-逻辑或函数单元可处理数据集中的数据子集
