@@ -4,20 +4,20 @@
 # Dichback Algorithm
 A step-saving and efficient backtracking algorithm.
 
-> But this algorithm relies on **logical unit** and does not save steps if the number of steps to run the logical elements counts. Therefore, if there are special logical conjunction units, only simple steps are needed to calculate the sum of logical conjunction operations, and the optimization efficiency brought by this algorithm is very high.
+> But this algorithm relies on **logical unit** and does not save steps if the number of steps to run the logical elements counts. Therefore, if there are special logical conjunction(or logical OR) units, only simple steps are needed to calculate the sum of logical conjunction(or logical OR) operations, and the optimization efficiency brought by this algorithm is very high.
 
 ## Backtracking logic
 
 The backtracking step is complicated, so it might be better to just look at the code
 
-- Define logic conjunction function units:
+- Define logic conjunction(logic OR) function units:
 
     - **logic_unit**(self, **effective_list**: *list*) -> *bool* : Accept a list (a collection of valid data) as a parameter, iterate over each element, and return `False` if any element does not conform to the defined logic; otherwise, return `True`.
 
 - Call the function **dichotomy_backtracking_algorithm**(**effective_list**):
 
 
-    1. **Call the Logic conjunction Function Unit** (parameter : *effective_list* ) : return *bool*
+    1. **Call the Logic conjunction(logic OR) Function Unit** (parameter : *effective_list* ) : return *bool*
 
     2. **First Call**：If the return value is `True`, exit directly (since all elements conform to the defined logic); if the return value is `False`, divide the effective list into two sublists (`Sublist 1`, `Sublist 2`), and return `Sublist 1` as a parameter to **Step 1**.
 
@@ -65,3 +65,10 @@ In the `dichback` module, the **AlgorithmSet** class requires that a logical uni
 def logic_unit(self, effective_list: list) -> bool
 ```
 At the same time, it provides the *self.counts* attribute to view the number of times the logical unit is called.
+
+## Other algorithms in Dichback
+
+These algorithms all support logical units; for details, please refer to the code comments.
+
+- Simple exhaustion algorithm
+- Common dichotomy algorithm
