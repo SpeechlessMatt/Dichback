@@ -1,7 +1,7 @@
 # __init__.py
 from .Dichback import AlgorithmSet
 
-__version__ = "0.0.1"
+__version__ = "0.0.5"
 
 
 
