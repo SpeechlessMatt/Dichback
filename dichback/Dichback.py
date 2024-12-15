@@ -85,7 +85,7 @@ class AlgorithmSet:
         """
         # 初始化
         list_len = len(effective_list)
-        if list_len < 4:
+        if list_len < 10:
             raise AlgorithmChoiceError("It is NOT SUITABLE for THIS METHOD.")
         min_num = 0
         max_num = list_len
@@ -142,7 +142,7 @@ class AlgorithmSet:
                     # 满区间判断true直接break
                     if mark == max_num:
                         break
-                    min_num = max_num + 1
+                    min_num = max_num
                     if len(mark_steps) > 1:
                         # 回溯
                         mark_steps.pop()
