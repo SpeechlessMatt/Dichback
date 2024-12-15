@@ -85,7 +85,7 @@ class AlgorithmSet:
         """
         # 初始化
         list_len = len(effective_list)
-        if list_len < 10:
+        if list_len < 6:
             raise AlgorithmChoiceError("It is NOT SUITABLE for THIS METHOD.")
         min_num = 0
         max_num = list_len
