@@ -17,6 +17,7 @@ class AlgorithmSet:
     def __init__(self):
         self.effective_list = []
         self.counts = 0
+        self.dba_lm_default = 3
 
     @abc.abstractmethod
     def logic_unit(self, effective_list: list) -> bool:
@@ -90,7 +91,10 @@ class AlgorithmSet:
         min_num = 0
         max_num = list_len
         # 最小输出元：这个就是二分区间中左边区间长度的最小值，一旦长度小于lm，将通过一一遍历的方式将左区间输出
-        lm = list_len // 3 - 1
+        # 如果lm = 0那就不行了，无限循环，所以list_len >= 6
+        lm = list_len // self.dba_lm_default - 1
+        if lm == 0:
+            raise AlgorithmChoiceError("Because 'lm' is 0 or under 0, it will make this method in loop forever.")
         # 记录步数
         counts = 0
         # 二分法边界 最右边区间的上界（端点）
